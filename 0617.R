@@ -81,18 +81,20 @@ dim(ret_mon_year.xts)
 head(ret_mon_year.xts,5)
 
 #9
-price_day_year %>%
-  select(id, price) %>%
-  filter(price > mean(price))  
+tej <- read_csv("data_wrangle_practice/tej_day_price_2017_2018.txt",col_names = TRUE)
+glimpse(tej)
 
-price_day_year %>%
-  select(id, price) %>%
-  filter((price > 000) | (price < 1000)) %>%
-  arrange(desc(price)) %>%
-  View()
+tej <- tej %>% select('證券代碼','簡稱','年月日','市值(百萬元)') %>%
+  rename(id = '證券代碼', name  = '簡稱',date  = '年月日',cap   = '市值(百萬元)') %>%
+  mutate(date = date %>% as.character %>% as.Date('%Y%m%d')) %>%
+  mutate(id = id %>% as.character) %>%
+  arrange(desc(date),desc(cap)) %>%
+  select(3,4,1,2) %>%
+  filter()
 
-
-
+mutate(diff_1 = sales = sales_lag_1) %>%
+  mutate(pct_diff_1 = iff_1 / sales_lag_1) %>%
+  mutate(pct_diff_1_chr = scales::percent(pct_diff_1))
 
 
 
