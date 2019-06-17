@@ -70,7 +70,9 @@ h6 {
 </style>
 
 
+</head>
 
+<body>
 
 <style type="text/css">
 .main-container {
@@ -101,6 +103,8 @@ summary {
 </style>
 
 
+
+<div class="container-fluid main-container">
 
 <!-- tabsets -->
 
@@ -175,30 +179,20 @@ $(document).ready(function () {
 
 
 
-</head>
-
-<body>
-
-
-<div class="container-fluid main-container">
-
-
-
 
 <div class="fluid-row" id="header">
 
 
 
 <h1 class="title toc-ignore">Final Exam</h1>
-<h4 class="author">黃榆珮</h4>
-<h4 class="date">2019年6月17日</h4>
+<h4 class="author"><em>黃榆珮</em></h4>
+<h4 class="date"><em>2019年6月17日</em></h4>
 
 </div>
 
 
-<ol style="list-style-type: decimal">
-<li>使用套件tidyquant, timetk，並讀入資料 <a href="https://github.com/swtzang/FinDB_2019/tree/master/data_wrangle_practice/tej_day_price_2017_2018.txt" class="uri">https://github.com/swtzang/FinDB_2019/tree/master/data_wrangle_practice/tej_day_price_2017_2018.txt</a></li>
-</ol>
+<div id="tidyquant-timetk-httpsgithub.comswtzangfindb_2019treemasterdata_wrangle_practicetej_day_price_2017_2018.txt" class="section level1">
+<h1>1. 使用套件tidyquant, timetk，並讀入資料 <a href="https://github.com/swtzang/FinDB_2019/tree/master/data_wrangle_practice/tej_day_price_2017_2018.txt" class="uri">https://github.com/swtzang/FinDB_2019/tree/master/data_wrangle_practice/tej_day_price_2017_2018.txt</a></h1>
 <pre class="r"><code>library(tidyquant)</code></pre>
 <pre><code>## Warning: package 'tidyquant' was built under R version 3.5.3</code></pre>
 <pre><code>## Loading required package: lubridate</code></pre>
@@ -213,7 +207,6 @@ $(document).ready(function () {
 <pre><code>## Loading required package: xts</code></pre>
 <pre><code>## Warning: package 'xts' was built under R version 3.5.3</code></pre>
 <pre><code>## Loading required package: zoo</code></pre>
-<pre><code>## Warning: package 'zoo' was built under R version 3.5.3</code></pre>
 <pre><code>## 
 ## Attaching package: 'zoo'</code></pre>
 <pre><code>## The following objects are masked from 'package:base':
@@ -225,25 +218,21 @@ $(document).ready(function () {
 ## 
 ##     legend</code></pre>
 <pre><code>## Loading required package: quantmod</code></pre>
-<pre><code>## Warning: package 'quantmod' was built under R version 3.5.3</code></pre>
 <pre><code>## Loading required package: TTR</code></pre>
 <pre><code>## Warning: package 'TTR' was built under R version 3.5.3</code></pre>
 <pre><code>## Version 0.4-0 included new data defaults. See ?getSymbols.</code></pre>
 <pre><code>## Loading required package: tidyverse</code></pre>
 <pre><code>## Warning: package 'tidyverse' was built under R version 3.5.3</code></pre>
-<pre><code>## -- Attaching packages --------------------------------------------------------------------------------- tidyverse 1.2.1 --</code></pre>
-<pre><code>## √ ggplot2 3.2.0     √ purrr   0.3.2
-## √ tibble  2.1.3     √ dplyr   0.8.1
-## √ tidyr   0.8.3     √ stringr 1.4.0
-## √ readr   1.3.1     √ forcats 0.4.0</code></pre>
-<pre><code>## Warning: package 'tibble' was built under R version 3.5.3</code></pre>
+<pre><code>## -- Attaching packages ----------------------------------------------------------------- tidyverse 1.2.1 --</code></pre>
+<pre><code>## √ ggplot2 3.1.0       √ purrr   0.3.1  
+## √ tibble  2.0.1       √ dplyr   0.8.0.1
+## √ tidyr   0.8.3       √ stringr 1.4.0  
+## √ readr   1.3.1       √ forcats 0.4.0</code></pre>
+<pre><code>## Warning: package 'ggplot2' was built under R version 3.5.3</code></pre>
 <pre><code>## Warning: package 'tidyr' was built under R version 3.5.3</code></pre>
 <pre><code>## Warning: package 'readr' was built under R version 3.5.3</code></pre>
-<pre><code>## Warning: package 'purrr' was built under R version 3.5.3</code></pre>
-<pre><code>## Warning: package 'dplyr' was built under R version 3.5.3</code></pre>
-<pre><code>## Warning: package 'stringr' was built under R version 3.5.3</code></pre>
 <pre><code>## Warning: package 'forcats' was built under R version 3.5.3</code></pre>
-<pre><code>## -- Conflicts ------------------------------------------------------------------------------------ tidyverse_conflicts() --
+<pre><code>## -- Conflicts -------------------------------------------------------------------- tidyverse_conflicts() --
 ## x lubridate::as.difftime() masks base::as.difftime()
 ## x lubridate::date()        masks base::date()
 ## x dplyr::filter()          masks stats::filter()
@@ -255,8 +244,7 @@ $(document).ready(function () {
 ## x lubridate::union()       masks base::union()</code></pre>
 <pre class="r"><code>library(timetk)</code></pre>
 <pre><code>## Warning: package 'timetk' was built under R version 3.5.3</code></pre>
-<pre class="r"><code>#1
-rm(list=ls())
+<pre class="r"><code>rm(list=ls())
 stock_day_year&lt;-read_tsv(&quot;data_wrangle_practice/tej_day_price_2017_2018.txt&quot;)</code></pre>
 <pre><code>## Parsed with column specification:
 ## cols(
@@ -288,11 +276,10 @@ stock_day_year&lt;-read_tsv(&quot;data_wrangle_practice/tej_day_price_2017_2018.
 ## $ `成交值(千元)` &lt;dbl&gt; 101450, 33550, 2411, 3705, 182, 42, 406, 11504, 171,...
 ## $ `市值(百萬元)` &lt;dbl&gt; 129779, 89078, 6748, 15610, 3703, 3789, 9009, 8931, ...
 ## $ `成交量(千股)` &lt;dbl&gt; 2890, 1271, 278, 150, 20, 4, 25, 653, 7, 2213, 19, 2...</code></pre>
-<ol start="2" style="list-style-type: decimal">
-<li>選取欄位“證券代碼”, “簡稱”, “年月日”, “收盤價(元)”, “市值(百萬元)”, 並將名稱改為“id”, “name”, “date”, “price”, “cap”。</li>
-</ol>
-<pre class="r"><code>#2
-price_day_year &lt;- stock_day_year %&gt;% 
+</div>
+<div id="-----id-name-date-price-cap" class="section level1">
+<h1>2. 選取欄位“證券代碼”, “簡稱”, “年月日”, “收盤價(元)”, “市值(百萬元)”, 並將名稱改為“id”, “name”, “date”, “price”, “cap”。</h1>
+<pre class="r"><code>price_day_year &lt;- stock_day_year %&gt;% 
    rename(id    = `證券代碼`, 
           name  = `簡稱`, 
           date  = `年月日`, 
@@ -316,11 +303,10 @@ dim(price_day_year)</code></pre>
 ## $ `成交值(千元)` &lt;dbl&gt; 101450, 33550, 2411, 3705, 182, 42, 406, 11504, 171,...
 ## $ cap            &lt;dbl&gt; 129779, 89078, 6748, 15610, 3703, 3789, 9009, 8...
 ## $ `成交量(千股)` &lt;dbl&gt; 2890, 1271, 278, 150, 20, 4, 25, 653, 7, 2213, 19, 2...</code></pre>
-<ol start="3" style="list-style-type: decimal">
-<li>選取id, date, price, 並將id改為文字格式，date改為日期格式，並將資料格式改為寬資料。提示：使用spread()。</li>
-</ol>
-<pre class="r"><code>#3
-price_day_year1 &lt;- stock_day_year %&gt;% 
+</div>
+<div id="id-date-price-iddatespread" class="section level1">
+<h1>3. 選取id, date, price, 並將id改為文字格式，date改為日期格式，並將資料格式改為寬資料。提示：使用spread()。</h1>
+<pre class="r"><code>price_day_year1 &lt;- stock_day_year %&gt;% 
   rename(id    = `證券代碼`, 
          name  = `簡稱`, 
          date  = `年月日`, 
@@ -1265,11 +1251,10 @@ dim(price_day_year1)</code></pre>
 ## $ `9946` &lt;dbl&gt; 9.12, 9.20, 9.24, 9.24, 9.20, 9.20, 9.16, 9.16, 9.16, 9...
 ## $ `9955` &lt;dbl&gt; 15.90, 15.90, 16.10, 16.30, 16.25, 16.25, 16.10, 16.55,...
 ## $ `9958` &lt;dbl&gt; 9.21, 9.20, 9.25, 9.19, 9.16, 9.12, 9.15, 9.14, 9.15, 9...</code></pre>
-<ol start="4" style="list-style-type: decimal">
-<li>檢查含有NA的股票代碼及其NA的個數。</li>
-</ol>
-<pre class="r"><code>#4
-price_day_year_na &lt;- price_day_year1 %&gt;% 
+</div>
+<div id="nana" class="section level1">
+<h1>4. 檢查含有NA的股票代碼及其NA的個數。</h1>
+<pre class="r"><code>price_day_year_na &lt;- price_day_year1 %&gt;% 
   map_df(~sum(is.na(.))) %&gt;% 
   gather() %&gt;% 
   filter(value!=0)
@@ -1308,11 +1293,10 @@ price_day_year_na.1</code></pre>
 ##  9 3530    374
 ## 10 3711    321
 ## # ... with 41 more rows</code></pre>
-<ol start="5" style="list-style-type: decimal">
-<li>將NA值以最近的股價取代。提示：使用na.locf()</li>
-</ol>
-<pre class="r"><code>#5
-price_day_year_clear &lt;-  price_day_year1 %&gt;% 
+</div>
+<div id="nana.locf" class="section level1">
+<h1>5. 將NA值以最近的股價取代。提示：使用na.locf()</h1>
+<pre class="r"><code>price_day_year_clear &lt;-  price_day_year1 %&gt;% 
   na.locf(fromLast = TRUE, na.rm=FALSE) %&gt;%
   select(-c(&quot;2025&quot;, &quot;6131&quot;))
 head(price_day_year_clear)</code></pre>
@@ -1346,17 +1330,15 @@ head(price_day_year_clear)</code></pre>
 ## #   `1474` &lt;dbl&gt;, `1475` &lt;dbl&gt;, `1476` &lt;dbl&gt;, `1477` &lt;dbl&gt;, `1503` &lt;dbl&gt;,
 ## #   `1504` &lt;dbl&gt;, `1506` &lt;dbl&gt;, `1507` &lt;dbl&gt;, `1512` &lt;dbl&gt;, `1513` &lt;dbl&gt;,
 ## #   `1514` &lt;dbl&gt;, `1515` &lt;dbl&gt;, ...</code></pre>
-<ol start="6" style="list-style-type: decimal">
-<li>刪除上題中仍含有NA值的股票, 並確認股票數量及筆數。</li>
-</ol>
-<pre class="r"><code>#6
-dim(price_day_year_clear)</code></pre>
+</div>
+<div id="na-" class="section level1">
+<h1>6. 刪除上題中仍含有NA值的股票, 並確認股票數量及筆數。</h1>
+<pre class="r"><code>dim(price_day_year_clear)</code></pre>
 <pre><code>## [1] 493 927</code></pre>
-<ol start="7" style="list-style-type: decimal">
-<li>將資料轉為xts(提示：可用tk_xts()), 計算日報酬率(以log計算)(提示：可用Return.calculate()), 並刪除第一筆沒有報酬率的資料。請顯示前五檔股票第1-5天的報酬率。</li>
-</ol>
-<pre class="r"><code>#7
-ret_day_year &lt;- price_day_year_clear %&gt;% 
+</div>
+<div id="xtstk_xts-logreturn.calculate-1-5" class="section level1">
+<h1>7. 將資料轉為xts(提示：可用tk_xts()), 計算日報酬率(以log計算)(提示：可用Return.calculate()), 並刪除第一筆沒有報酬率的資料。請顯示前五檔股票第1-5天的報酬率。</h1>
+<pre class="r"><code>ret_day_year &lt;- price_day_year_clear %&gt;% 
   select(1:6) %&gt;%  
   tk_xts(select = -date, date_var = date) %&gt;% 
   Return.calculate(method = &quot;log&quot;) %&gt;%
@@ -1375,11 +1357,10 @@ head(ret_day_year,5)</code></pre>
 ## 2017-01-06 -0.004656586
 ## 2017-01-09  0.002331003
 ## 2017-01-10  0.000000000</code></pre>
-<ol start="8" style="list-style-type: decimal">
-<li>計算月報酬率(以log計算)(提示：可用Return.calculate()), 並刪除第一筆沒有報酬率的資料。請顯示前五檔股票第1-5天的報酬率。</li>
-</ol>
-<pre class="r"><code>#8
-price_day_year.xts &lt;- price_day_year_clear %&gt;%
+</div>
+<div id="logreturn.calculate-1-5" class="section level1">
+<h1>8. 計算月報酬率(以log計算)(提示：可用Return.calculate()), 並刪除第一筆沒有報酬率的資料。請顯示前五檔股票第1-5天的報酬率。</h1>
+<pre class="r"><code>price_day_year.xts &lt;- price_day_year_clear %&gt;%
   select(1:6) %&gt;%
   tk_xts(select = -date, date_var = date)  
 
@@ -1397,6 +1378,7 @@ head(ret_mon_year.xts,5)</code></pre>
 ## 2017-04-30 -0.03355239 -0.026377474 -0.02314472 -0.022969591 -0.031610261
 ## 2017-05-31 -0.02013376 -0.067822596 -0.01871054  0.003937874 -0.010016778
 ## 2017-06-30  0.02283282 -0.064589374  0.02357673 -0.042825456 -0.007860793</code></pre>
+</div>
 
 
 

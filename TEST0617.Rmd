@@ -10,19 +10,17 @@ knitr::opts_chunk$set(echo = TRUE)
 ```
 
 
-1. 使用套件tidyquant, timetk，並讀入資料  https://github.com/swtzang/FinDB_2019/tree/master/data_wrangle_practice/tej_day_price_2017_2018.txt
+#1. 使用套件tidyquant, timetk，並讀入資料  https://github.com/swtzang/FinDB_2019/tree/master/data_wrangle_practice/tej_day_price_2017_2018.txt
 ```{r}
 library(tidyquant)
 library(timetk)
-#1
 rm(list=ls())
 stock_day_year<-read_tsv("data_wrangle_practice/tej_day_price_2017_2018.txt")
 glimpse(stock_day_year)
 ```
 
-2. 選取欄位“證券代碼”, “簡稱”, “年月日”, “收盤價(元)”, “市值(百萬元)”, 並將名稱改為“id”, “name”, “date”, “price”, “cap”。
+#2. 選取欄位“證券代碼”, “簡稱”, “年月日”, “收盤價(元)”, “市值(百萬元)”, 並將名稱改為“id”, “name”, “date”, “price”, “cap”。
 ```{r}
-#2
 price_day_year <- stock_day_year %>% 
    rename(id    = `證券代碼`, 
           name  = `簡稱`, 
@@ -34,9 +32,8 @@ dim(price_day_year)
 glimpse(price_day_year)
 ```
 
-3. 選取id, date, price, 並將id改為文字格式，date改為日期格式，並將資料格式改為寬資料。提示：使用spread()。
+#3. 選取id, date, price, 並將id改為文字格式，date改為日期格式，並將資料格式改為寬資料。提示：使用spread()。
 ```{r}
-#3
 price_day_year1 <- stock_day_year %>% 
   rename(id    = `證券代碼`, 
          name  = `簡稱`, 
@@ -52,9 +49,8 @@ dim(price_day_year1)
 glimpse(price_day_year1)
 ```
 
-4. 檢查含有NA的股票代碼及其NA的個數。
+#4. 檢查含有NA的股票代碼及其NA的個數。
 ```{r}
-#4
 price_day_year_na <- price_day_year1 %>% 
   map_df(~sum(is.na(.))) %>% 
   gather() %>% 
@@ -69,24 +65,21 @@ price_day_year_na.1 <- price_day_year1 %>%
 price_day_year_na.1
 ```
 
-5. 將NA值以最近的股價取代。提示：使用na.locf()
+#5. 將NA值以最近的股價取代。提示：使用na.locf()
 ```{r}
-#5
 price_day_year_clear <-  price_day_year1 %>% 
   na.locf(fromLast = TRUE, na.rm=FALSE) %>%
   select(-c("2025", "6131"))
 head(price_day_year_clear)
 ```
 
-6. 刪除上題中仍含有NA值的股票, 並確認股票數量及筆數。
+#6. 刪除上題中仍含有NA值的股票, 並確認股票數量及筆數。
 ```{r}
-#6
 dim(price_day_year_clear)
 ```
 
-7. 將資料轉為xts(提示：可用tk_xts()), 計算日報酬率(以log計算)(提示：可用Return.calculate()), 並刪除第一筆沒有報酬率的資料。請顯示前五檔股票第1-5天的報酬率。
+#7. 將資料轉為xts(提示：可用tk_xts()), 計算日報酬率(以log計算)(提示：可用Return.calculate()), 並刪除第一筆沒有報酬率的資料。請顯示前五檔股票第1-5天的報酬率。
 ```{r}
-#7
 ret_day_year <- price_day_year_clear %>% 
   select(1:6) %>%  
   tk_xts(select = -date, date_var = date) %>% 
@@ -96,9 +89,8 @@ ret_day_year <- price_day_year_clear %>%
 head(ret_day_year,5)
 ```
 
-8. 計算月報酬率(以log計算)(提示：可用Return.calculate()), 並刪除第一筆沒有報酬率的資料。請顯示前五檔股票第1-5天的報酬率。
+#8. 計算月報酬率(以log計算)(提示：可用Return.calculate()), 並刪除第一筆沒有報酬率的資料。請顯示前五檔股票第1-5天的報酬率。
 ```{r}
-#8
 price_day_year.xts <- price_day_year_clear %>%
   select(1:6) %>%
   tk_xts(select = -date, date_var = date)  
