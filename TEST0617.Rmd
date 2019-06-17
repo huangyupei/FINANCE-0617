@@ -1,5 +1,5 @@
 ---
-title: "EXAM"
+title: "Final Exam"
 author: "黃榆珮"
 date: "2019年6月17日"
 output: html_document
@@ -52,7 +52,7 @@ dim(price_day_year1)
 glimpse(price_day_year1)
 ```
 
-
+4. 檢查含有NA的股票代碼及其NA的個數。
 ```{r}
 #4
 price_day_year_na <- price_day_year1 %>% 
@@ -69,7 +69,7 @@ price_day_year_na.1 <- price_day_year1 %>%
 price_day_year_na.1
 ```
 
-
+5. 將NA值以最近的股價取代。提示：使用na.locf()
 ```{r}
 #5
 price_day_year_clear <-  price_day_year1 %>% 
@@ -78,11 +78,13 @@ price_day_year_clear <-  price_day_year1 %>%
 head(price_day_year_clear)
 ```
 
+6. 刪除上題中仍含有NA值的股票, 並確認股票數量及筆數。
 ```{r}
 #6
 dim(price_day_year_clear)
 ```
 
+7. 將資料轉為xts(提示：可用tk_xts()), 計算日報酬率(以log計算)(提示：可用Return.calculate()), 並刪除第一筆沒有報酬率的資料。請顯示前五檔股票第1-5天的報酬率。
 ```{r}
 #7
 ret_day_year <- price_day_year_clear %>% 
@@ -94,6 +96,7 @@ ret_day_year <- price_day_year_clear %>%
 head(ret_day_year,5)
 ```
 
+8. 計算月報酬率(以log計算)(提示：可用Return.calculate()), 並刪除第一筆沒有報酬率的資料。請顯示前五檔股票第1-5天的報酬率。
 ```{r}
 #8
 price_day_year.xts <- price_day_year_clear %>%
@@ -108,8 +111,5 @@ ret_mon_year.xts <- price_day_year.xts %>%
   na.omit()
 
 head(ret_mon_year.xts,5)
-```
-
-````{r}
 ```
 
